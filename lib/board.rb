@@ -25,7 +25,7 @@ class Board
     puts '   │'
     puts " 1 │ #{@a.rows[0]}   #{@b.rows[0]}   #{@c.rows[0]}   #{@d.rows[0]}   #{@e.rows[0]}   #{@f.rows[0]}   #{@g.rows[0]}"
     puts '   └───────────────────────────'
-    puts '     a   b   c   d   e   f   g'
+    puts '     A   B   C   D   E   F   G'
   end
 
   private

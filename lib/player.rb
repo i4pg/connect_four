@@ -4,6 +4,8 @@ require_relative 'board'
 
 # assign players and switch between them
 class Players
+  attr_accessor :player_one, :player_two, :current_player
+
   def initialize
     @player_one = '+'
     @player_two = '-'

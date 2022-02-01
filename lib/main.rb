@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Baord
+class Board
   attr_accessor :rows, :current_row
 
   def initialize
@@ -71,6 +71,6 @@ end
 @c = Baord.new
 @d = Baord.new
 @e = Baord.new
-@f = Baord.new
 @g = Baord.new
+@f = Baord.new
 pretty_print

@@ -2,7 +2,7 @@
 
 # board class
 class Board
-  attr_accessor :current_row
+  attr_accessor :current_row, :rows
 
   def initialize
     @rows = '=' * 6
@@ -27,8 +27,4 @@ class Board
     puts '   └───────────────────────────'
     puts '     A   B   C   D   E   F   G'
   end
-
-  private
-
-  attr_reader :rows
 end

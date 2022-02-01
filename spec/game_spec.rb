@@ -4,7 +4,7 @@ require 'game'
 
 RSpec.describe Game do
   let(:row) { subject.instance_variable_get(:@a) }
-  let(:game) { subject.instance_variable_get(:@new_game) }
+  let(:game) { subject.instance_variable_get(:@players) }
   describe '#take_input' do
     context 'ask user for input' do
       before do

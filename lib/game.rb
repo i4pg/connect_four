@@ -19,7 +19,8 @@ class Game
   end
 
   def take_input
-    puts 'Choose a column'
+    puts "Player #{@players.current_player} is your turn"
+    puts 'Please, Choose a column'
     puts '[A, B, C, D, E, F, G]'
     input = gets.chomp
     check_input(input.downcase)
@@ -34,29 +35,49 @@ class Game
 
   def assign_input(input)
     input.rows[input.current_row] = @players.current_player unless input.current_row =~ /^[+-]$/
-    next_row(input)
+    next_row(input) unless input.current_row =~ /^[+-]$/
+    input.rows[input.current_row]
   end
 
   def next_row(input)
     input.current_row += 1 unless input.current_row == 6
   end
 
+  def pretty_print
+    puts '   │'
+    puts " 6 │ #{@a.rows[5]}   #{@b.rows[5]}   #{@c.rows[5]}   #{@d.rows[5]}   #{@e.rows[5]}   #{@f.rows[5]}   #{@g.rows[5]}"
+    puts '   │'
+    puts " 5 │ #{@a.rows[4]}   #{@b.rows[4]}   #{@c.rows[4]}   #{@d.rows[4]}   #{@e.rows[4]}   #{@f.rows[5]}   #{@g.rows[4]}"
+    puts '   │'
+    puts " 4 │ #{@a.rows[3]}   #{@b.rows[3]}   #{@c.rows[3]}   #{@d.rows[3]}   #{@e.rows[3]}   #{@f.rows[3]}   #{@g.rows[3]}"
+    puts '   │'
+    puts " 3 │ #{@a.rows[2]}   #{@b.rows[2]}   #{@c.rows[2]}   #{@d.rows[2]}   #{@e.rows[2]}   #{@f.rows[2]}   #{@g.rows[2]}"
+    puts '   │'
+    puts " 2 │ #{@a.rows[1]}   #{@b.rows[1]}   #{@c.rows[1]}   #{@d.rows[1]}   #{@e.rows[1]}   #{@f.rows[1]}   #{@g.rows[1]}"
+    puts '   │'
+    puts " 1 │ #{@a.rows[0]}   #{@b.rows[0]}   #{@c.rows[0]}   #{@d.rows[0]}   #{@e.rows[0]}   #{@f.rows[0]}   #{@g.rows[0]}"
+    puts '   └───────────────────────────'
+    puts '     A   B   C   D   E   F   G'
+  end
+
+  private
+
   # to transfer the input to it is correct column (instance_variable)
   def which_column(input)
     case input
-    when a
+    when 'a'
       assign_input(instance_variable_get(:@a))
-    when b
+    when 'b'
       assign_input(instance_variable_get(:@b))
-    when c
+    when 'c'
       assign_input(instance_variable_get(:@c))
-    when d
+    when 'd'
       assign_input(instance_variable_get(:@d))
-    when e
+    when 'e'
       assign_input(instance_variable_get(:@e))
-    when f
+    when 'f'
       assign_input(instance_variable_get(:@f))
-    when g
+    when 'g'
       assign_input(instance_variable_get(:@g))
     end
   end

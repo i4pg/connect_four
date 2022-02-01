@@ -5,7 +5,7 @@ require_relative 'player'
 
 # game driver
 class Game
-  attr_accessor :a, :b, :c, :d, :e, :f, :g
+  attr_accessor :a, :b, :c, :d, :e, :f, :g, :players
 
   def initialize
     @a = Board.new
@@ -15,7 +15,7 @@ class Game
     @e = Board.new
     @g = Board.new
     @f = Board.new
-    @new_game = Players.new
+    @players = Players.new
   end
 
   def take_input
@@ -33,15 +33,13 @@ class Game
   end
 
   def assign_input(input)
-    input.rows[input.current_row] = @new_game.current_player unless input.current_row =~ /^[+-]$/
+    input.rows[input.current_row] = @players.current_player unless input.current_row =~ /^[+-]$/
     next_row(input)
   end
 
   def next_row(input)
     input.current_row += 1 unless input.current_row == 6
   end
-
-  private
 
   # to transfer the input to it is correct column (instance_variable)
   def which_column(input)

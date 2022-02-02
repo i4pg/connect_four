@@ -19,7 +19,7 @@ class Game
   end
 
   def take_input
-    puts "Player #{@players.current_player} is your turn"
+    puts "Player #{@players.current_player} turn"
     puts 'Please, Choose column'
     puts '[A, B, C, D, E, F, G]'
     input = gets.chomp
@@ -34,9 +34,8 @@ class Game
   end
 
   def assign_input(input)
-    input.rows[input.current_row] = @players.current_player unless input.current_row =~ /^[+-]$/
-    next_row(input) unless input.current_row =~ /^[+-]$/
-    input.rows[input.current_row]
+    input.rows[input.current_row] = @players.current_player
+    next_row(input)
   end
 
   def next_row(input)
@@ -53,7 +52,7 @@ class Game
     puts '   │'
     puts " 6 │ #{@a.rows[5]}   #{@b.rows[5]}   #{@c.rows[5]}   #{@d.rows[5]}   #{@e.rows[5]}   #{@f.rows[5]}   #{@g.rows[5]}"
     puts '   │'
-    puts " 5 │ #{@a.rows[4]}   #{@b.rows[4]}   #{@c.rows[4]}   #{@d.rows[4]}   #{@e.rows[4]}   #{@f.rows[5]}   #{@g.rows[4]}"
+    puts " 5 │ #{@a.rows[4]}   #{@b.rows[4]}   #{@c.rows[4]}   #{@d.rows[4]}   #{@e.rows[4]}   #{@f.rows[4]}   #{@g.rows[4]}"
     puts '   │'
     puts " 4 │ #{@a.rows[3]}   #{@b.rows[3]}   #{@c.rows[3]}   #{@d.rows[3]}   #{@e.rows[3]}   #{@f.rows[3]}   #{@g.rows[3]}"
     puts '   │'

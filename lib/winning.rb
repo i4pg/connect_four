@@ -6,11 +6,12 @@ require_relative 'game'
 
 # a class for the winning conditions
 class Winning
-  attr_accessor :game, :counter
+  attr_accessor :game, :counter, :over
 
   def initialize
     @game = Game.new
     @counter = 0
+    @over = false
   end
 
   def game_over
@@ -36,9 +37,9 @@ class Winning
               current == arr[i + 2].rows[row + 2] &&
               current == arr[i + 3].rows[row + 3]
           return congrats(current)
-        elsif current == arr[i - 1].rows[row + 1] &&
-              current == arr[i - 2].rows[row + 2] &&
-              current == arr[i - 3].rows[row + 3]
+        elsif current == arr[i + 1].rows[row - 1] &&
+              current == arr[i + 2].rows[row - 2] &&
+              current == arr[i + 3].rows[row - 3]
           return congrats(current)
         end
       end
@@ -46,11 +47,17 @@ class Winning
     nil
   end
 
-  def congrats(winner)
-    puts "Congrats!! Player #{winner} Won the game."
+  def draw?
+    return unless @counter == 42 && @over == false
+
+    @over = true
+    puts "It's a draw !!"
   end
 
-  def draw?
-    return true if @counter == 42 # && game_over.nil?
+  private
+
+  def congrats(winner)
+    @over = true
+    puts "Congrats!! Player #{winner} Won the game."
   end
 end

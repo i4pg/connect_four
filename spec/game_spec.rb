@@ -3,17 +3,17 @@
 require 'game'
 
 RSpec.describe Game do
-  let(:row) { subject.instance_variable_get(:@a) }
+  let(:row) { subject.instance_variable_get(:@f) }
   let(:game) { subject.instance_variable_get(:@players) }
   describe '#take_input' do
     context 'ask user for input' do
-      before do
-        allow(subject).to receive(:puts).with('Choose a column')
-        allow(subject).to receive(:puts).with('[A, B, C, D, E, F, G]')
-        allow(subject).to receive(:gets).and_return('a')
-      end
       it 'send to #check_input' do
-        allow(subject).to receive(:check_input).with('B').once
+        expect(subject).to receive(:puts).with("Player #{game.current_player} is your turn")
+        expect(subject).to receive(:puts).with('Please, Choose column')
+        expect(subject).to receive(:puts).with('[A, B, C, D, E, F, G]')
+        expect(subject).to receive(:gets).and_return('a')
+        expect(subject).to receive(:check_input).with('a').once
+        subject.take_input
       end
     end
   end
@@ -65,8 +65,11 @@ RSpec.describe Game do
           subject.next_row(row)
         end
       end
-      it 'returns nil' do
-        expect(subject.next_row(row)).to be_nil
+      it 'ask user to choose another column' do
+        expect(subject).to receive(:pretty_print).once
+        expect(subject).to receive(:puts).with('This column is full, Please choose another column').once
+        expect(subject).to receive(:take_input).once
+        subject.next_row(row)
       end
     end
   end

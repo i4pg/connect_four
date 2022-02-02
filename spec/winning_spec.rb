@@ -14,12 +14,14 @@ RSpec.describe Winning do
     end
     context 'when palyer one win the game' do
       before do
+        subject.counter = 7 # game_over starts work after the 7th move
         4.times do
           game.assign_input(game.a)
         end
       end
-      it 'returns the "+" ' do
-        expect(subject.game_over).to eq('+')
+      it 'returns "+" ' do
+        expect(subject).to receive(:congrats).with('+').once
+        subject.game_over
       end
     end
   end

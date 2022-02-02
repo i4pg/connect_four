@@ -20,7 +20,7 @@ class Game
 
   def take_input
     puts "Player #{@players.current_player} is your turn"
-    puts 'Please, Choose a column'
+    puts 'Please, Choose column'
     puts '[A, B, C, D, E, F, G]'
     input = gets.chomp
     check_input(input.downcase)
@@ -40,7 +40,13 @@ class Game
   end
 
   def next_row(input)
-    input.current_row += 1 unless input.current_row == 6
+    if input.current_row == 6
+      puts 'This column is full, Please choose another column'
+      pretty_print
+      return take_input
+    end
+
+    input.current_row += 1
   end
 
   def pretty_print

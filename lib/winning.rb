@@ -19,27 +19,38 @@ class Winning
     arr.each_with_index do |col, i|
       6.times do |row|
         current = col.rows[row]
+        next unless current != '=' && @counter >= 7
+        next if arr[i + 1].nil? || arr[i + 2].nil? || arr[i + 3].nil?
         # vertical
-        if current != '=' && current == arr[i + 1].rows[row] && current == arr[i + 2].rows[row] && current == arr[i + 3].rows[row]
-          return current
-        end
+        if current == arr[i + 1].rows[row] &&
+           current == arr[i + 2].rows[row] &&
+           current == arr[i + 3].rows[row]
+          return congrats(current)
         # horz
-        if current != '=' && current == arr[i].rows[row + 1] && current == arr[i].rows[row + 2] && current == arr[i].rows[row + 3]
-          return current
-        end
+        elsif current == arr[i].rows[row + 1] &&
+              current == arr[i].rows[row + 2] &&
+              current == arr[i].rows[row + 3]
+          return congrats(current)
         # diag
-        if current != '=' && current == arr[i + 1].rows[row + 1] && current == arr[i + 2].rows[row + 2] && current == arr[i + 3].rows[row + 3]
-          return current
-        end
-        if current != '=' && current == arr[i - 1].rows[row + 1] && current == arr[i - 2].rows[row + 2] && current == arr[i - 3].rows[row + 3]
-          return current
+        elsif current == arr[i + 1].rows[row + 1] &&
+              current == arr[i + 2].rows[row + 2] &&
+              current == arr[i + 3].rows[row + 3]
+          return congrats(current)
+        elsif current == arr[i - 1].rows[row + 1] &&
+              current == arr[i - 2].rows[row + 2] &&
+              current == arr[i - 3].rows[row + 3]
+          return congrats(current)
         end
       end
     end
     nil
   end
 
+  def congrats(winner)
+    puts "Congrats!! Player #{winner} Won the game."
+  end
+
   def draw?
-    return true if @counter == 42 && game_over.nil?
+    return true if @counter == 42 # && game_over.nil?
   end
 end

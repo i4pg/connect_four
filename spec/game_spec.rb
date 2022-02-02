@@ -8,7 +8,7 @@ RSpec.describe Game do
   describe '#take_input' do
     context 'ask user for input' do
       it 'send to #check_input' do
-        expect(subject).to receive(:puts).with("Player #{game.current_player} is your turn")
+        expect(subject).to receive(:puts).with("Player #{game.current_player} turn")
         expect(subject).to receive(:puts).with('Please, Choose column')
         expect(subject).to receive(:puts).with('[A, B, C, D, E, F, G]')
         expect(subject).to receive(:gets).and_return('a')

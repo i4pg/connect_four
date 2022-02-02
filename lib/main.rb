@@ -17,7 +17,7 @@ class Main
     @start.game_over
     @start.draw?
     @start.game.players.switch_player
-    driver unless @start.game_over
+    driver unless @start.over
   end
 end
 
